@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuporMES", "SuporMES\SuporMES.csproj", "{DF9A9452-E7B8-4391-92B6-9E89096B34D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF9A9452-E7B8-4391-92B6-9E89096B34D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9A9452-E7B8-4391-92B6-9E89096B34D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9A9452-E7B8-4391-92B6-9E89096B34D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9A9452-E7B8-4391-92B6-9E89096B34D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E77CF3A-20F9-4B2F-8DB0-9A5204235725}
+	EndGlobalSection
+EndGlobal

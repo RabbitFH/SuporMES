@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!--控制器引用项目.需要公开XML注释文件,用于Swagger-->
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <!--仅允许生成中文(简体)语言资源程序集-->
+    <SatelliteResourceLanguages>zh-Hans;zh-CN</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BaseDto" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="9.0.3" />
+    <PackageReference Include="SqlDataDriven" Version="1.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+</Project>
