@@ -41,7 +41,7 @@ namespace SuporMES.Controllers
         /// <summary>
         /// 获取一个值,该值表示部门代码
         /// </summary>
-        private static string Dept=> DeptCode ??= GetDeptAsync(CancellationToken.None).Result;
+        private static string Dept => DeptCode ??= GetDeptAsync(CancellationToken.None).Result;
 
         /// <summary>
         /// 获取部门代码
@@ -67,11 +67,15 @@ namespace SuporMES.Controllers
         {
             //分割 提货单a|物品号1,提货单a|物品号2,提货单b|物品号2,提货单b|物品号3,提货单b|物品号4
             IEnumerable<(string Invoice, string Code)> list = ladings.Split(',').Select(str =>
-            str.Split('|') is string[] tmp && tmp.Length is 2 ? (tmp[0], tmp[1]) : (string.Empty, string.Empty));
-            //过滤掉空值
-            list = list.Where(lading => !string.IsNullOrEmpty(lading.Invoice) && !string.IsNullOrEmpty(lading.Code));
+            str.Split('|') is not string[] tmp ? (string.Empty, string.Empty)
+            : tmp.Length is 2 ? (tmp[0], tmp[1])
+            : tmp.Length is 1 ? (tmp[0], string.Empty) : (string.Empty, string.Empty));
 
-            if (!list.Any()) return ResponseDto.Error($"提货单号与物品号不能为空![{ladings}]");
+            //过滤掉空值
+            //list = list.Where(lading => !string.IsNullOrEmpty(lading.Invoice) || !string.IsNullOrEmpty(lading.Code));
+
+            if (list.Any(lading => string.IsNullOrEmpty(lading.Invoice) || string.IsNullOrEmpty(lading.Code)))
+                return ResponseDto.Error($"提货单号或物品号不能为空![{ladings}]");
             if (string.IsNullOrWhiteSpace(Dept)) return ResponseDto.Error("Super 防串货系统企业编码获取失败,请检查接口服务器!");
 
             //数据校验(校验错误则返回错误信息)
@@ -92,7 +96,7 @@ namespace SuporMES.Controllers
         /// <param name="wph">物品号(自己的)</param>
         /// <param name="token">可用于取消异步操作的取消令牌</param>
         /// <returns>是否通过</returns>
-        internal static async Task<bool> DataCheckAsync(string dept,string invoice,string wph, CancellationToken token)
+        internal static async Task<bool> DataCheckAsync(string dept, string invoice, string wph, CancellationToken token)
         {
             using DataSet ds = new();
             using SqlCommand command = new(Check);
